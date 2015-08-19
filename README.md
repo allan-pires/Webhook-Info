@@ -4,6 +4,14 @@ O programa está dividido em Controllers e Models:
 * Controller: Controlador de objetos
 * Model: Modelagem de objetos
 
+##Fluxo do programa
+1. Lê um arquivo de texto com dados de webhooks.
+2. Cria um objeto Webhook para cada webhook do log.
+3. Cria uma HashMap<Key, Value>, onde são armazenadas as URL(key) e as quantidades de chamadas(value).
+4. Cria uma HashMap<Key, Value>, onde são armazenados os Status(key) e a frequência de cada estado(value).
+5. Ordena ambas as HashMaps por Value, em ordem decrescente.
+6. Imprime ambos os HashMaps, com a quantidade de itens a serem impressos desejada (ex: top 3).
+
 ##Classes
 * [DeveloperTask](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/DeveloperTask.java): Classe Main do projeto, instancia as outras classes
 

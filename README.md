@@ -1,15 +1,24 @@
 # Developer-Task
+##Estrutura
+O programa está dividido em Controllers e Models:
+* Controller: Controlador de objetos
+* Model: Modelagem de objetos
 
 ##Classes
 * [DeveloperTask](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/DeveloperTask.java): Classe Main do projeto, instancia as outras classes
-* [WebhookController](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/controller/WebhookController.java): Cria, ordena e imprime dados dos Webhooks
+
 * [Webhook](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/model/Webhook.java): Modelo de um Webhook
 * [Container](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/model/Container.java): Modelo de uma container com 2 valores
+
+* [WebhookController](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/controller/WebhookController.java): Cria, ordena e imprime dados dos Webhooks
+
 * [IWebhook](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/interfaces/IWebhook.java): Interface
 * [IWebhookController](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/interfaces/IWebhookController.java): Interface
-* [WebhookControllerTest](https://github.com/doisLan/Developer-Task/blob/master/test/developertask/controller/WebhookControllerTest.java): Testes da classe WebhookController
+
 * [WebhookTest](https://github.com/doisLan/Developer-Task/blob/master/test/developertask/model/WebhookTest.java): Testes da classe Webhook
 * [ContainerTest](https://github.com/doisLan/Developer-Task/blob/master/test/developertask/model/ContainerTest.java): Testes da classe Container
+* [WebhookControllerTest](https://github.com/doisLan/Developer-Task/blob/master/test/developertask/controller/WebhookControllerTest.java): Testes da classe WebhookController
+
 
 ##Informações
 

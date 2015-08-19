@@ -35,3 +35,15 @@ https://notoriouslonesome.com - 90
 200 - 100
 201 - 99
 ```
+
+## Como utilizar
+Para rodar o programa deve-se abrir o prompt de comando e digitar a seguinte linha:
+```
+java -jar "[...]\Developer-Task\dist\DeveloperTask.jar"
+```
+Onde [...] é o caminho absoluto de onde o projeto está localizado.
+O programa irá pedir para você indicar o caminho para um arquivo de log, visto que o arquivo de log encontra-se na pasta raiz ndo projeto, basta digitar:
+```
+[...]\Developer-Task\log.txt
+```
+Onde [...], mais uma vez, indica o caminho absoluto de onde o projeto está localizado.

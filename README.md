@@ -1,9 +1,4 @@
 # Developer-Task
-##Estrutura
-O programa está dividido em Controllers e Models:
-* Controller: Controlador de objetos
-* Model: Modelagem de objetos
-
 ##Requisitos
 
 O programa deve ler um arquivo de log que contém informações de envio de webhooks no formato:
@@ -27,6 +22,11 @@ https://notoriouslonesome.com - 90
 200 - 100
 201 - 99
 ```
+
+##Estrutura
+O programa está dividido em Controllers e Models:
+* Controller: Realiza operações
+* Model: Modela objetos
 
 ##Fluxo do programa
 1. Lê um arquivo de texto com dados de webhooks.

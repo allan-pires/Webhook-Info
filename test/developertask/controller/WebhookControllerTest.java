@@ -5,6 +5,7 @@
  */
 package developertask.controller;
 
+import developertask.interfaces.IWebhook;
 import developertask.model.Webhook;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,7 +36,7 @@ public class WebhookControllerTest {
         String path = new File(".").getCanonicalPath();
         path += "\\test\\developertask\\controller\\test_log.txt";
         WebhookController instance = new WebhookController();
-        ArrayList<Webhook> expected = new ArrayList<>();
+        ArrayList<IWebhook> expected = new ArrayList<>();
         expected.add(new Webhook("https://grotesquemoon.de" ,"201"));
         expected.add(new Webhook("https://woodenoyster.com.br" ,"500"));
         expected.add(new Webhook("https://grotesquemoon.de" ,"500"));

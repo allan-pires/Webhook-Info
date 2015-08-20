@@ -7,6 +7,7 @@ package developertask.interfaces;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 /**
@@ -14,6 +15,15 @@ import java.util.TreeMap;
  * @author doisl_000
  */
 public interface IWebhookController {
+    
+    // Default getter
+    public ArrayList<IWebhook> getWebhooks();
+    
+    // Default getter
+    public TreeMap<String, Integer>  getUrlMap();
+    
+    // Default getter
+    public TreeMap<String, Integer>  getStatusMap();
     
     // Populates the set webhooks from a .txt file. 
     public void CreateWebhooksFromFile(String path) throws FileNotFoundException, IOException, Exception;

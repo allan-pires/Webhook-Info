@@ -5,6 +5,7 @@
  */
 package developertask.controller;
 
+import developertask.interfaces.IWebhook;
 import developertask.interfaces.IWebhookController;
 import developertask.model.Webhook;
 import java.io.BufferedReader;
@@ -25,7 +26,7 @@ import java.util.TreeMap;
 public class WebhookController implements IWebhookController 
 {
     // Attributes
-    private ArrayList<Webhook> _webhooks;
+    private ArrayList<IWebhook> _webhooks;
     private TreeMap<String, Integer> _urlMap;
     private TreeMap<String, Integer> _statusMap;
     
@@ -38,16 +39,19 @@ public class WebhookController implements IWebhookController
     }
     
     // Default getter
-    public ArrayList<Webhook> getWebhooks() {
+    @Override
+    public ArrayList<IWebhook> getWebhooks() {
         return this._webhooks;
     }
 
     // Default setter
+    @Override
     public TreeMap<String, Integer>  getUrlMap() {
         return this._urlMap;
     }
     
     // Default setter
+    @Override
     public TreeMap<String, Integer>  getStatusMap() {
         return this._statusMap;
     }
@@ -60,7 +64,7 @@ public class WebhookController implements IWebhookController
         {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
-            ArrayList<Webhook> wh_array = new ArrayList<>();
+            ArrayList<IWebhook> wh_array = new ArrayList<>();
             
             while (line != null) 
             {

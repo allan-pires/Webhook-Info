@@ -10,6 +10,18 @@ package developertask.interfaces;
  * @author doisl_000
  */
 public interface IWebhook {
-    // Create a Webhook object from a string
+    // Default getter
+    public String GetResponse_status();
+    
+    // Default getter
+    public String GetRequest_to();
+    
+    // Default setter
+    public void SetResponse_status(String response_status);
+    
+    // Default setter
+    public void SetRequest_to(String request_to);
+    
+    // Tries to create a Webhook object from a string
     public IWebhook ParseStringToWebhook(String log_line) throws Exception;
 }

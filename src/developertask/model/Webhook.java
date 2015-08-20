@@ -57,6 +57,7 @@ public class Webhook implements IWebhook {
         this._request_to = request_to;
     }
 
+    // Tries to create a Webhook object from a string
     @Override
     public Webhook ParseStringToWebhook(String log_line) throws Exception 
     {

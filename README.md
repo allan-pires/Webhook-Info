@@ -58,8 +58,9 @@ Para rodar o programa deve-se abrir o prompt de comando e digitar a seguinte lin
 java -jar "[...]\Developer-Task\dist\DeveloperTask.jar"
 ```
 Onde "[...]" é o caminho absoluto de onde o projeto está localizado.
-O programa irá pedir para você indicar o caminho para um arquivo de log, visto que o arquivo de log encontra-se na pasta raiz ndo projeto, basta digitar:
+O programa irá pedir para você indicar o caminho para um arquivo de log, deve-se digitar:
 ```
-[...]\Developer-Task\log.txt
+[...]\log.txt
 ```
 Onde "[...]", mais uma vez, indica o caminho absoluto de onde o projeto está localizado.
+Obs:Existe um arquivo de log disponível na pasta raiz do programa.

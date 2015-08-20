@@ -31,16 +31,15 @@ https://notoriouslonesome.com - 90
 ##Fluxo do programa
 1. Lê um arquivo de texto com dados de webhooks.
 2. Cria um objeto Webhook para cada webhook do log.
-3. Cria uma HashMap<Key, Value>, onde são armazenadas as URL(key) e as quantidades de chamadas(value).
-4. Cria uma HashMap<Key, Value>, onde são armazenados os Status(key) e a frequência de cada estado(value).
-5. Ordena ambas as HashMaps por Value, em ordem decrescente.
-6. Imprime ambos os HashMaps, com a quantidade de itens a serem impressos desejada.
+3. Cria uma TreeMap<Key, Value>, onde são armazenadas as URL(key) e as quantidades de chamadas(value).
+4. Cria uma TreeMap<Key, Value>, onde são armazenados os Status(key) e a frequência de cada estado(value).
+5. Ordena ambas os Maps por Value, em ordem decrescente.
+6. Imprime ambos os Maps, com a quantidade de itens a serem impressos desejada.
 
 ##Classes
 * [DeveloperTask](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/DeveloperTask.java): Classe Main do projeto, instancia as outras classes
 
 * [Webhook](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/model/Webhook.java): Modelo de um Webhook
-* [Container](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/model/Container.java): Modelo de uma container com 2 valores
 
 * [WebhookController](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/controller/WebhookController.java): Cria, ordena e imprime dados dos Webhooks
 
@@ -48,11 +47,12 @@ https://notoriouslonesome.com - 90
 * [IWebhookController](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/interfaces/IWebhookController.java): Interface
 
 * [WebhookTest](https://github.com/doisLan/Developer-Task/blob/master/test/developertask/model/WebhookTest.java): Testes da classe Webhook
-* [ContainerTest](https://github.com/doisLan/Developer-Task/blob/master/test/developertask/model/ContainerTest.java): Testes da classe Container
 
 * [WebhookControllerTest](https://github.com/doisLan/Developer-Task/blob/master/test/developertask/controller/WebhookControllerTest.java): Testes da classe WebhookController
 
 ## Como utilizar
+É necessário ter o Java instalado no Windows, bem como a [variável JAVA_HOME configurada](http://www.robertsindall.co.uk/blog/setting-java-home-variable-in-windows/).
+
 Para rodar o programa deve-se abrir o prompt de comando e digitar a seguinte linha:
 ```
 java -jar "[...]\Developer-Task\dist\DeveloperTask.jar"

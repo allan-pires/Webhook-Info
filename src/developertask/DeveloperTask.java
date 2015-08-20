@@ -30,20 +30,24 @@ public class DeveloperTask
     {
         WebhookController whc = new WebhookController();
         
+        // Read the file and create the Webhook objects
         whc.CreateWebhooksFromFile(file);
-        whc.CreateURLContainers();
-        whc.SortAndPrint(3);
-        whc.CreateStatusContainers();
-        whc.SortAndPrint(0);
+        
+        // Create the maps of URL and Status
+        whc.CreateURLMap();
+        whc.CreateStatusMap();
+        
+        // Sort and print the maps
+        whc.SortAndPrint(whc.getUrlMap(), 3);
+        whc.SortAndPrint(whc.getStatusMap(), 0);
     }
     
     // Main method
     public static void main(String[] args) throws Exception 
     {   
-        String path;
         try
         {
-            path = ReadInput();
+            String path = ReadInput();
             DefaultAction(path); 
         }
         catch (FileNotFoundException ex)

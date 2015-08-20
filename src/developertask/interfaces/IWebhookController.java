@@ -7,6 +7,7 @@ package developertask.interfaces;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.TreeMap;
 
 /**
  *
@@ -18,11 +19,11 @@ public interface IWebhookController {
     public void CreateWebhooksFromFile(String path) throws FileNotFoundException, IOException, Exception;
     
     // Populates the containers with URLs and its frequency
-    public void CreateURLContainers();
+    public void CreateURLMap();
     
     // Populates the containers with Status and its frequency
-    public void CreateStatusContainers();
+    public void CreateStatusMap();
     
-    // Sort and print the [quantity] firts containers (desc order)
-    public void SortAndPrint(int quantity);
+    // Sort and print the [quantity] firts entries of the set (desc order)
+    public void SortAndPrint(TreeMap<String, Integer> map, int quantity);
 }

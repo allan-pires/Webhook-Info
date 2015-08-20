@@ -5,16 +5,12 @@
  */
 package developertask.controller;
 
-import developertask.model.Container;
 import developertask.model.Webhook;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.util.ArrayList;
-import org.junit.After;
+import java.util.TreeMap;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -22,7 +18,7 @@ import org.junit.Test;
  * @author doisl_000
  */
 public class WebhookControllerTest {
-
+    
     /**
      * Test of CreateWebhooksFromFile method, of class WebhookController.
      * @throws java.lang.Exception
@@ -61,17 +57,14 @@ public class WebhookControllerTest {
         instance.getWebhooks().add(new Webhook("https://grotesquemoon.de" ,"500"));
         instance.getWebhooks().add(new Webhook("https://solidwindshield.net.br" ,"400"));
         instance.getWebhooks().add(new Webhook("https://grimpottery.net.br" ,"400"));
-        instance.CreateURLContainers();
-        ArrayList<Container> result = new ArrayList<>();
-        result.add(new Container("https://woodenoyster.com.br", 1));
-        result.add(new Container("https://grotesquemoon.de", 2));
-        result.add(new Container("https://solidwindshield.net.br", 1));
-        result.add(new Container("https://grimpottery.net.br", 1));
+        instance.CreateURLMap();
+        TreeMap<String, Integer> result = new TreeMap<>();
+        result.put("https://woodenoyster.com.br", 1);
+        result.put("https://grotesquemoon.de", 2);
+        result.put("https://solidwindshield.net.br", 1);
+        result.put("https://grimpottery.net.br", 1);
         
-        Assert.assertTrue(result.get(0).equals(instance.getContainers().get(0)));
-        Assert.assertTrue(result.get(1).equals(instance.getContainers().get(1)));
-        Assert.assertTrue(result.get(2).equals(instance.getContainers().get(2)));
-        Assert.assertTrue(result.get(3).equals(instance.getContainers().get(3)));
+        Assert.assertTrue(result.equals(instance.getUrlMap()));
     }
 
     /**
@@ -85,15 +78,13 @@ public class WebhookControllerTest {
         instance.getWebhooks().add(new Webhook("https://grotesquemoon.de" ,"500"));
         instance.getWebhooks().add(new Webhook("https://solidwindshield.net.br" ,"400"));
         instance.getWebhooks().add(new Webhook("https://grimpottery.net.br" ,"400"));
-        instance.CreateStatusContainers();
-        ArrayList<Container> result = new ArrayList<>();
-        result.add(new Container("201", 1));
-        result.add(new Container("400", 2));
-        result.add(new Container("500", 2));
+        instance.CreateStatusMap();
+        TreeMap<String, Integer> result = new TreeMap<>();
+        result.put("201", 1);
+        result.put("400", 2);
+        result.put("500", 2);
         
-        Assert.assertTrue(result.get(0).equals(instance.getContainers().get(0)));
-        Assert.assertTrue(result.get(1).equals(instance.getContainers().get(1)));
-        Assert.assertTrue(result.get(2).equals(instance.getContainers().get(2)));
+       Assert.assertTrue(result.equals(instance.getStatusMap()));
     }
 
     /**
@@ -107,16 +98,15 @@ public class WebhookControllerTest {
         instance.getWebhooks().add(new Webhook("https://grotesquemoon.de" ,"500"));
         instance.getWebhooks().add(new Webhook("https://solidwindshield.net.br" ,"400"));
         instance.getWebhooks().add(new Webhook("https://grimpottery.net.br" ,"400"));
-        instance.CreateURLContainers();
-        ArrayList<Container> result = new ArrayList<>();
-        result.add(new Container("https://grotesquemoon.de", 2));
-        result.add(new Container("https://woodenoyster.com.br", 1));
-        result.add(new Container("https://solidwindshield.net.br", 1));
-        instance.SortAndPrint(3);
+        instance.CreateURLMap();
+        TreeMap<String, Integer> result = new TreeMap<>();
+        result.put("https://grotesquemoon.de", 2);
+        result.put("https://woodenoyster.com.br", 1);
+        result.put("https://solidwindshield.net.br", 1);
+        result.put("https://grimpottery.net.br", 1);;
+        instance.SortAndPrint(instance.getUrlMap(), 3);
         
-        Assert.assertTrue(result.get(0).equals(instance.getContainers().get(0)));
-        Assert.assertTrue(result.get(1).equals(instance.getContainers().get(1)));
-        Assert.assertTrue(result.get(2).equals(instance.getContainers().get(2)));
+        Assert.assertTrue(result.equals(instance.getUrlMap()));
     }
     
     @Test
@@ -127,17 +117,14 @@ public class WebhookControllerTest {
         instance.getWebhooks().add(new Webhook("https://grotesquemoon.de" ,"500"));
         instance.getWebhooks().add(new Webhook("https://solidwindshield.net.br" ,"400"));
         instance.getWebhooks().add(new Webhook("https://grimpottery.net.br" ,"400"));
-        instance.CreateStatusContainers();
-        ArrayList<Container> result = new ArrayList<>();
-        result.add(new Container("400", 2));
-        result.add(new Container("500", 2));
-        result.add(new Container("201", 1));
-        instance.SortAndPrint(3);
+        instance.CreateStatusMap();
+        TreeMap<String, Integer> result = new TreeMap<>();
+        result.put("500", 2);
+        result.put("400", 2);
+        result.put("201", 1);
         
-        Assert.assertTrue(result.get(0).equals(instance.getContainers().get(0)));
-        Assert.assertTrue(result.get(1).equals(instance.getContainers().get(1)));
-        Assert.assertTrue(result.get(2).equals(instance.getContainers().get(2)));
-    }
-    
-}
+        instance.SortAndPrint(instance.getStatusMap(), 0);
 
+        Assert.assertTrue(result.equals(instance.getStatusMap()));
+    }
+}

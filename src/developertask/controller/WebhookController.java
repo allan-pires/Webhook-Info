@@ -6,15 +6,17 @@
 package developertask.controller;
 
 import developertask.interfaces.IWebhookController;
-import developertask.model.Container;
 import developertask.model.Webhook;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 /**
  *
@@ -24,13 +26,15 @@ public class WebhookController implements IWebhookController
 {
     // Attributes
     private ArrayList<Webhook> _webhooks;
-    private ArrayList<Container> _containers;
+    private TreeMap<String, Integer> _urlMap;
+    private TreeMap<String, Integer> _statusMap;
     
     // Default constructor
     public WebhookController() 
     {
         this._webhooks = new ArrayList<>();
-        this._containers = new ArrayList<>();
+        this._urlMap = new TreeMap<>();
+        this._statusMap = new TreeMap<>();
     }
     
     // Default getter
@@ -39,8 +43,13 @@ public class WebhookController implements IWebhookController
     }
 
     // Default setter
-    public ArrayList<Container> getContainers() {
-        return this._containers;
+    public TreeMap<String, Integer>  getUrlMap() {
+        return this._urlMap;
+    }
+    
+    // Default setter
+    public TreeMap<String, Integer>  getStatusMap() {
+        return this._statusMap;
     }
 
     // Populates the set webhooks from a .txt file. 
@@ -71,79 +80,88 @@ public class WebhookController implements IWebhookController
 
     // Populates the containers with URLs and its frequency
     @Override
-    public void CreateURLContainers() 
+    public void CreateURLMap() 
     {
-        // Will store URLs and Frequency (not sorted)
-        HashMap<String,Integer> map = new HashMap<>();
-        
         // Populates the HashMap with every webhook and its frequency
-        for(int i = 0; i < _webhooks.size(); i++){
-           String url = _webhooks.get(i).GetRequest_to();
-           Integer val = map.get(url);
+        for(int i = 0; i < this._webhooks.size(); i++){
+           String url = this._webhooks.get(i).GetRequest_to();
+           Integer val = this._urlMap.get(url);
            
            if(val != null)
            {
-                map.put(url, new Integer(val + 1));
+                this._urlMap.put(url, new Integer(val + 1));
            }
            else{
-                map.put(url,1);
+                this._urlMap.put(url,1);
            }
-        }
-        
-        // Populates containers with values from the HashMap
-        this._containers.clear();
-        for(Entry<String, Integer> entry : map.entrySet()) {
-            this._containers.add(new Container(entry.getKey(), entry.getValue()));
         }
     }
     
     // Populates the containers with Status and its frequency
     @Override
-    public void CreateStatusContainers()
+    public void CreateStatusMap()
     {
-        // Will store URLs and Frequency (not sorted)
-        HashMap<String,Integer> map = new HashMap<>();
-        
         // Populates the HashMap with every webhook and its frequency
-        for(int i = 0; i < _webhooks.size(); i++){
-           String status = _webhooks.get(i).GetResponse_status();
-           Integer val = map.get(status);
+        for(int i = 0; i < this._webhooks.size(); i++){
+           String status = this._webhooks.get(i).GetResponse_status();
+           Integer val = this._statusMap.get(status);
            
            if(val != null)
            {
-                map.put(status, new Integer(val + 1));
+                this._statusMap.put(status, new Integer(val + 1));
            }
            else{
-                map.put(status,1);
+                this._statusMap.put(status,1);
            }
-        }
-        
-        // Populates containers with values from the HashMap
-        this._containers.clear();
-        for(Entry<String, Integer> entry : map.entrySet()) {
-            this._containers.add(new Container(entry.getKey(), entry.getValue()));
         }
     }
     
-    // Sort and print the [quantity] firts containers (desc order)
-    @Override
-    public void SortAndPrint(int quantity)
-    {
-        if (!this._containers.isEmpty())
-        {
-            this._containers.sort(new Container().reversed());
-            
-            if (quantity == 0)
+    //Sorts the TreeMap based on values
+    public static <Key, Value extends Comparable<Value>> Map<Key, Value> sortByValues(final Map<Key, Value> map) {
+        Comparator<Key> valueComparator = (Key k1, Key k2) -> {
+            int compare = map.get(k1).compareTo(map.get(k2));
+            if (compare == 0)
             {
-                quantity = this._containers.size();
+                return 1;
             }
-            
-            for (int i = 0; i < quantity; i++)
+            else
             {
-                this._containers.get(i).print();
+                return compare;
             }
-            
-            System.out.println();
-        }
+        };
+
+        Map<Key, Value> sortedByValues = new TreeMap<>(valueComparator.reversed());
+        sortedByValues.putAll(map);
+        
+        return sortedByValues;
     }
+    
+    // Sort and print the [quantity] firts entries of the set (desc order)
+    @Override
+    public void SortAndPrint(TreeMap<String, Integer> map, int quantity)
+    {
+        Map sortedMap = sortByValues(map);
+        Set set = sortedMap.entrySet();
+ 
+        // Get an iterator
+        Iterator i = set.iterator();
+        if (quantity == 0)
+        {
+            quantity = map.size();
+        }
+        
+        // Display elements
+        while(i.hasNext() && quantity > 0) {
+            Map.Entry entry = (Map.Entry)i.next();
+            StringBuilder sb = new StringBuilder();
+            sb.append(entry.getKey());
+            sb.append(" - ");
+            sb.append(entry.getValue());
+            System.out.println(sb.toString());
+            quantity--;
+        }
+
+        System.out.println();
+    }
+
 }

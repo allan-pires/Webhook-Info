@@ -1,5 +1,5 @@
 # Developer-Task
-##Requisitos
+## Requisitos
 
 O programa deve ler um arquivo de log que contém informações de envio de webhooks no formato:
 
@@ -23,12 +23,12 @@ https://notoriouslonesome.com - 90
 201 - 99
 ```
 
-##Estrutura
+## Estrutura
 O programa está dividido em Controllers e Models:
 * Controller: Realiza operações
 * Model: Modela objetos
 
-##Fluxo do programa
+## Fluxo do programa
 1. Lê um arquivo de texto com dados de webhooks.
 2. Cria um objeto Webhook para cada webhook do log.
 3. Cria uma TreeMap<Key, Value>, onde são armazenadas as URL(key) e as quantidades de chamadas(value).
@@ -36,7 +36,7 @@ O programa está dividido em Controllers e Models:
 5. Ordena ambas os Maps por Value, em ordem decrescente.
 6. Imprime ambos os Maps, com a quantidade de itens a serem impressos desejada.
 
-##Classes
+## Classes
 * [DeveloperTask](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/DeveloperTask.java): Classe Main do projeto, instancia as outras classes
 
 * [Webhook](https://github.com/doisLan/Developer-Task/blob/master/src/developertask/model/Webhook.java): Modelo de um Webhook
